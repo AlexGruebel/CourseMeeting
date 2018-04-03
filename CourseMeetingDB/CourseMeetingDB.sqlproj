@@ -69,4 +69,7 @@
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Roles.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CourseMeetingDB.publish.xml" />
+  </ItemGroup>
 </Project>
