@@ -1,0 +1,42 @@
+﻿@model CourseMeetingMVC.Models.Account.RegisterViewModel
+
+<h2>Registier</h2>
+
+<div class="row">
+
+    <form method="post" asp-controller="Account" asp-action="Register">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <br />
+            <input asp-for="UserName" />
+            <br />
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <br />
+            <input asp-for="Email" />
+            <br />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <br />
+            <input asp-for="Password" />
+            <br />
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PasswordConfirmation"></label>
+            <br />
+            <input asp-for="PasswordConfirmation" />
+            <br />
+            <span asp-validation-for="Password"></span>
+        </div>
+           
+        <button type="submit" class="btn btn-default">Register</button>
+    </form>
+</div>

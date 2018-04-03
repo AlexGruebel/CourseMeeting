@@ -4,8 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CourseMeetingDBContextLib;
+using Microsoft.EntityFrameworkCore;
+using CourseMeetingEntitiesLib;
 
 namespace CourseMeetingMVC
 {
@@ -21,6 +25,12 @@ namespace CourseMeetingMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<CourseMeetingDb>(option => option.UseSqlServer(System.IO.File.ReadAllText(".connectionString")));
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<CourseMeetingDb>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc();
         }
 
