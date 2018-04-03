@@ -69,7 +69,4 @@
     <Build Include="Tables\Users.sql" />
     <Build Include="Tables\Roles.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="CourseMeetingDB.refactorlog" />
-  </ItemGroup>
 </Project>
