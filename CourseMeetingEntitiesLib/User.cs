@@ -10,5 +10,6 @@ namespace CourseMeetingEntitiesLib
     {
         public int RID { get; set; }
         public Role Role {get;set;}
+        public IList<CourseMeetingParticipant> Courses;
     }
 }
