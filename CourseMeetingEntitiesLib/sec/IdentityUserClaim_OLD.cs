@@ -1,4 +1,4 @@
-namespace CourseMeetingEntitiesLib
+namespace CourseMeetingEntitiesLib.sec
 {
     public class IdentityUserClaim{
         public int ID {get;set;}

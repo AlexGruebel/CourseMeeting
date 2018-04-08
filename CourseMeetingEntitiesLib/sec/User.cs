@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace CourseMeetingEntitiesLib
+namespace CourseMeetingEntitiesLib.sec
 {
     public class User : IdentityUser
     {

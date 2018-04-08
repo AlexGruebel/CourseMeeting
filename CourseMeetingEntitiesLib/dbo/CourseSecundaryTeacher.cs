@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CourseMeetingEntitiesLib.sec;
 
-namespace CourseMeetingEntitiesLib
+namespace CourseMeetingEntitiesLib.dbo
 {
     public class CourseSecundaryTeacher
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CourseMeetingEntitiesLib
+namespace CourseMeetingEntitiesLib.dbo
 {
     public class CourseMeeting
     {

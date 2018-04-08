@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CourseMeetingEntitiesLib
+namespace CourseMeetingEntitiesLib.dbo
 {
     public class Course
     {

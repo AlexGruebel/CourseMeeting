@@ -1,4 +1,5 @@
-﻿namespace CourseMeetingEntitiesLib
+﻿using CourseMeetingEntitiesLib.sec;
+namespace CourseMeetingEntitiesLib.dbo
 {
     public class CourseMeetingParticipant
     {

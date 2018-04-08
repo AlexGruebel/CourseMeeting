@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 
-namespace CourseMeetingEntitiesLib
+namespace CourseMeetingEntitiesLib.sec
 {
     public class Role : IdentityRole
     {
