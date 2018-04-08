@@ -5,13 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CourseMeetingMVC.Models;
+using CourseMeetingDBContextLib;
 
 namespace CourseMeetingMVC.Controllers
 {
     public class HomeController : Controller
     {
+
+        private CourseMeetingDb _db;
+
+        public HomeController(CourseMeetingDb db)
+        {
+            _db = db;
+        }
+
         public IActionResult Index()
         {
+            var test = _db.User.OrderBy(c => c.CID).ToArray();
+            //PTeacherId
             return View();
         }
 
