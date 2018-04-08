@@ -24,7 +24,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <GenerateCreateScript>True</GenerateCreateScript>
-    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -62,12 +62,14 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Courses.sql" />
-    <Build Include="Tables\CourseMeetings.sql" />
-    <Build Include="Tables\CourseMeetingParticipants.sql" />
-    <Build Include="Tables\CourseSecundaryTeachers.sql" />
-    <Build Include="Tables\Users.sql" />
-    <Build Include="Tables\Roles.sql" />
+    <Build Include="Tables\dbo.Courses.sql" />
+    <Build Include="Tables\dbo.CourseMeetings.sql" />
+    <Build Include="Tables\dbo.CourseMeetingParticipants.sql" />
+    <Build Include="Tables\dbo.CourseSecundaryTeachers.sql" />
+    <Build Include="Tables\sec.Users.sql" />
+    <Build Include="Tables\dbo.Roles.sql" />
+    <Build Include="sec.sql" />
+    <Build Include="Tables\sec.IdentityUserClaim.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CourseMeetingDB.publish.xml" />
