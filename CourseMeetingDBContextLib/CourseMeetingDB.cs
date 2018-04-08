@@ -12,7 +12,9 @@ namespace CourseMeetingDBContextLib
         public DbSet<Course> CoursesMeetingParticipants { get; set; }
         public DbSet<Course> CourseSecundaryTeachers { get; set; }
         public DbSet<Course> Roles { get; set; }
-        public DbSet<Course> Users { get; set; }
+        public DbSet<Course> User { get; set; }
+
+        public DbSet<IdentityUserClaim> IdentityUserClaim {get;set;}
 
         public CourseMeetingDb(DbContextOptions options) : base(options)
         {
@@ -23,6 +25,7 @@ namespace CourseMeetingDBContextLib
         {
             base.OnModelCreating(modelBuilder);
 
+            
            modelBuilder.Entity<Course>(c =>
            {
                c.HasKey(m => m.CID);
@@ -32,8 +35,16 @@ namespace CourseMeetingDBContextLib
 
                c.HasMany(st => st.STeachers)
                .WithOne(st => st.Course);
-           });
 
+               
+
+               c.ToTable("Courses");
+           });
+             
+
+           //modelBuilder.Entity<Course>().HasKey(c => c.CID);
+
+           //modelBuilder.Entity<Course>().ToTable("Courses");
             modelBuilder.Entity<CourseMeeting>(cm =>
             {
                 cm.HasKey(k => k.MID);
@@ -45,6 +56,7 @@ namespace CourseMeetingDBContextLib
 
                 u.Property(p => p.Id)
                 .HasColumnName("UID");
+                
             });
 
             modelBuilder.Entity<CourseMeetingParticipant>(c =>
@@ -52,12 +64,25 @@ namespace CourseMeetingDBContextLib
                 c.HasOne(m => m.CourseMeeting)
                 .WithMany(m => m.CourseMeetingParticipants);
 
-                c.HasOne(m => m.Student)
-                .WithMany(s => s.)
+                //c.HasOne(m => m.Student)
+                //.WithMany(s => s.);//Courses
+
+                c.HasKey(k => new {k.MID, k.SUID});
             });
 
+            modelBuilder.Entity<CourseSecundaryTeacher>(t =>
+            {
+                t.HasKey(k => new {k.CID, k.STUID});
+            });
+
+            modelBuilder.Entity<User>(u =>{
+                //u.HasOne(r => r.Role)
+                 //.WithOne(r => r.User);
+            });
                 
         }
 
     }
 }
+
+
