@@ -1,20 +1,17 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using CourseMeetingEntitiesLib;
+using CourseMeetingEntitiesLib.dbo;
 
-namespace CourseMeetingDBContextLib
+namespace CourseMeetingDbContextLib
 {
     public class CourseMeetingDb : DbContext
     {
 
         public DbSet<Course> Courses {get;set;}
-        public DbSet<Course> CourseMeetings { get; set; }
-        public DbSet<Course> CoursesMeetingParticipants { get; set; }
-        public DbSet<Course> CourseSecundaryTeachers { get; set; }
-        public DbSet<Course> Roles { get; set; }
-        public DbSet<Course> User { get; set; }
+        public DbSet<CourseMeeting> CourseMeetings { get; set; }
+        public DbSet<CourseMeetingParticipant> CoursesMeetingParticipants { get; set; }
+        public DbSet<CourseSecundaryTeacher> CourseSecundaryTeachers { get; set; }
 
-        public DbSet<IdentityUserClaim> IdentityUserClaim {get;set;}
 
         public CourseMeetingDb(DbContextOptions options) : base(options)
         {
@@ -50,14 +47,6 @@ namespace CourseMeetingDBContextLib
                 cm.HasKey(k => k.MID);
             });
 
-            modelBuilder.Entity<User>(u =>
-            {
-                u.HasKey(k => k.Id);
-
-                u.Property(p => p.Id)
-                .HasColumnName("UID");
-                
-            });
 
             modelBuilder.Entity<CourseMeetingParticipant>(c =>
             {
@@ -74,12 +63,7 @@ namespace CourseMeetingDBContextLib
             {
                 t.HasKey(k => new {k.CID, k.STUID});
             });
-
-            modelBuilder.Entity<User>(u =>{
-                //u.HasOne(r => r.Role)
-                 //.WithOne(r => r.User);
-            });
-                
+          
         }
 
     }

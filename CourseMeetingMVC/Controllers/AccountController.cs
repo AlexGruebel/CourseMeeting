@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using CourseMeetingMVC.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using CourseMeetingEntitiesLib;
+using CourseMeetingEntitiesLib.sec;
 
 namespace CourseMeetingMVC.Controllers
 {
