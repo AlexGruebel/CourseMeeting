@@ -10,5 +10,7 @@ namespace CourseMeetingEntitiesLib
         public int RID { get; set; }
         public string RName { get; set; }
         public string RDescription { get; set; }
+
+        public User User {get;set;}
     }
 }
