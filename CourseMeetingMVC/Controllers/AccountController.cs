@@ -29,15 +29,19 @@ namespace CourseMeetingMVC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult>Register(RegisterViewModel model)
         {
             if(ModelState.IsValid)
             {
-                var user = new User
+                User user = new User
                 {
                     UserName = model.UserName,
                     Email = model.Email,
+                    RID = 1,
                 };
+                
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded)
                 {
