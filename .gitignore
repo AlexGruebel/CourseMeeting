@@ -8,3 +8,4 @@ Properties
 *.jfm
 *.refactorlog
 CourseMeeting.code-workspace
+*.connectionString
