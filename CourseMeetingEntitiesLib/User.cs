@@ -9,7 +9,7 @@ namespace CourseMeetingEntitiesLib
     public class User : IdentityUser
     {
         public int RID { get; set; }
-        public Role Role {get;set;}
-        public IList<CourseMeetingParticipant> Courses;
+        //public Role Role {get;set;}
+        //public IList<CourseMeetingParticipant> Courses;
     }
 }
