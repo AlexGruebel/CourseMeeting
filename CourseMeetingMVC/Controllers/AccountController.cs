@@ -46,7 +46,7 @@ namespace CourseMeetingMVC.Controllers
                 if(result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent:false);
-                    return Redirect("/Index");
+                    return Redirect("/Home/Index");
                 }
                 foreach(var error in result.Errors)
                 {
@@ -55,6 +55,12 @@ namespace CourseMeetingMVC.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
         }
 
     }
