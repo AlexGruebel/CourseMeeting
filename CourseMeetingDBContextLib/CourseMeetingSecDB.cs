@@ -13,6 +13,7 @@ namespace CourseMeetingDbContextLib
         public DbSet<Role> Roles { get; set; }
         public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
 
+        public DbSet<IdentityUserRole<string>> IdentityUserRole {get;set;}
 
         public CourseMeetingSecDB(DbContextOptions options) : base(options)
         {
@@ -27,26 +28,19 @@ namespace CourseMeetingDbContextLib
             modelBuilder.Entity<User>(u =>
             {
                 u.HasKey(k => k.Id);
-
-                u.Property(p => p.Id)
-                .HasColumnName("UID");
-
+                u.Property(p => p.Id).HasColumnName("UID");
                 u.ToTable("Users");
-
             });
 
-
-
-            /*
-            modelBuilder.Entity<User>(u =>
-            {
-                u.HasKey(k => k.Id);
-
-                u.Property(p => p.Id)
-                .HasColumnName("UID");
-
+            modelBuilder.Entity<Role>(r =>{
+                r.Property(p => p.Id).HasColumnName("RID");
+                r.Property(p => p.Name).HasColumnName("RName");
+                r.ToTable("Roles");
             });
-            */
+
+            modelBuilder.Entity<IdentityUserRole<string>>()
+                .HasKey(i => new {i.RoleId, i.UserId});
+
         }
 
     }
