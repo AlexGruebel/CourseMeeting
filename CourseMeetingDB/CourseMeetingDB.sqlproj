@@ -66,6 +66,7 @@
     <Build Include="Tables\dbo.CourseMeetings.sql" />
     <Build Include="Tables\dbo.CourseMeetingParticipants.sql" />
     <Build Include="Tables\dbo.CourseSecundaryTeachers.sql" />
+	<Build Include="Tables\sec.IdentityUserRole.sql" />
     <Build Include="Tables\sec.Users.sql" />
     <Build Include="Tables\dbo.Roles.sql" />
     <Build Include="sec.sql" />
