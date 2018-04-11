@@ -1,8 +1,8 @@
 ﻿@model CourseMeetingMVC.Models.Account.RegisterViewModel
 
-<h2>Registier</h2>
+<h2 class="display-2">Registier</h2>
 
-<div class="row">
+<div class=".center">
 
     <form method="post" asp-controller="Account" asp-action="Register">
         <div asp-validation-summary="All" class="text-danger"></div>
@@ -10,7 +10,7 @@
         <div class="form-group">
             <label asp-for="UserName"></label>
             <br />
-            <input asp-for="UserName" />
+            <input asp-for="UserName"/>
             <br />
             <span asp-validation-for="UserName"></span>
         </div>
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label asp-for="Password"></label>
             <br />
-            <input asp-for="Password" />
+            <input asp-for="Password" type="password"/>
             <br />
             <span asp-validation-for="Password"></span>
         </div>
@@ -32,7 +32,7 @@
         <div class="form-group">
             <label asp-for="PasswordConfirmation"></label>
             <br />
-            <input asp-for="PasswordConfirmation" />
+            <input asp-for="PasswordConfirmation" type="password"/>
             <br />
             <span asp-validation-for="Password"></span>
         </div>
