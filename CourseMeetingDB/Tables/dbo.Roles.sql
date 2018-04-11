@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [sec].[Roles](
 	[RID] [int] NOT NULL,
 	[RName] [nvarchar](20) NOT NULL,
-	[RDescription] [nvarchar](100) NOT NULL
+	[RDescription] [nvarchar](100) NULL
 ) ON [PRIMARY]
 
 GO
