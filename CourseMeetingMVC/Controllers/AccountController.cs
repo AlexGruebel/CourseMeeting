@@ -66,6 +66,7 @@ namespace CourseMeetingMVC.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             
@@ -73,10 +74,15 @@ namespace CourseMeetingMVC.Controllers
                 UserName = model.UserName,
                 PasswordHash = model.Password,
             };
-            
+
+            Console.WriteLine($"IsAuthenticated {User.Identity.IsAuthenticated}");
+            Console.WriteLine(User.Identity.Name);
             var result = await _signInManager.
-                PasswordSignInAsync(model.UserName, model.Password,false,true);        
-            if(result.Succeeded){
+                PasswordSignInAsync(model.UserName, model.Password,true,true);
+            Console.WriteLine($"IsAuthenticated {User.Identity.IsAuthenticated}");
+
+            
+            if (result.Succeeded){
                 Console.WriteLine("success");
                 return Redirect("/Home/Index");
             }else{

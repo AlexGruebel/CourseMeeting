@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using CourseMeetingEntitiesLib.sec;
 using System.Threading.Tasks;
-using CourseMeetingMVC.Models._Shared;
+
 
 namespace CourseMeetingMVC.Controllers
 {
@@ -15,13 +15,11 @@ namespace CourseMeetingMVC.Controllers
             this._signinManger = signInManager;
         }
 
-        [HttpGet]
-        public IActionResult _Layout(){
-            _SharedViewModel model = new _SharedViewModel{
-                UserName = User.Identity.Name,
-                IsSomeoneLogined = false,
-            };        
-            return View(model);
+        public async Task<IActionResult> SignOut()
+        {
+            
+            await _signinManger.SignOutAsync();
+            return Redirect("Home/Index");
         }
     }
 }
