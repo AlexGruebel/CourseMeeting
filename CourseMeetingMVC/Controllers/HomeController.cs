@@ -13,7 +13,7 @@ namespace CourseMeetingMVC.Controllers
     public class HomeController : Controller
     {
 
-        private CourseMeetingDb _db;
+        //private CourseMeetingDb _db;
 
         /*
         public HomeController(CourseMeetingDb db)
