@@ -15,6 +15,11 @@ namespace CourseMeetingMVC.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
+        private void CollectErrorsI(IdentityResult result){
+            foreach(var error in result.Errors)
+            {ModelState.AddModelError("Error: ",error.Description);}
+        }
+
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
@@ -48,10 +53,7 @@ namespace CourseMeetingMVC.Controllers
                     await _signInManager.SignInAsync(user, isPersistent:false);
                     return Redirect("/Home/Index");
                 }
-                foreach(var error in result.Errors)
-                {
-                    ModelState.AddModelError("Error: ", error.Description);
-                }
+                CollectErrorsI(result);
             }
 
             return View(model);
@@ -63,5 +65,25 @@ namespace CourseMeetingMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            
+            User user = new User{
+                UserName = model.UserName,
+                PasswordHash = model.Password,
+            };
+            
+            var result = await _signInManager.
+                PasswordSignInAsync(model.UserName, model.Password,false,true);        
+            if(result.Succeeded){
+                Console.WriteLine("success");
+                return Redirect("/Home/Index");
+            }else{
+                Console.WriteLine("failure");
+                ModelState.AddModelError("Error: ", "invalid Login data");
+                return View(model);
+            }   
+        }
     }
 }
