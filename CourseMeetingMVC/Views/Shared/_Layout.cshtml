@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model CourseMeetingMVC.Models._Shared._SharedViewModel
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,8 +34,17 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    <li>test</li>
                 </ul>
+
+                @if(!Model.IsSomeoneLogined)
+                {
+                    <ul class="nav navbar-nav navbar-right">     
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    </ul>
+                }
+
             </div>
         </div>
     </nav>
