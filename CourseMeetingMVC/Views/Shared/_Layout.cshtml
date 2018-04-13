@@ -36,20 +36,19 @@
                 </ul>
 
                 
-                @if(User.Identity == null)
+                @if(User.Identity.IsAuthenticated)
                 {
-                    <ul class="nav navbar-nav navbar-right">     
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                   <ul class="nav navbar-nav navbar-right">
+                        <li><a>@User.Identity.Name</a></li>
+                        <li> <a asp-controller="Account" asp-action="SignOut">Logout</a></li>
                     </ul>
                 }
                 else
                 {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@User.Identity.Name</li>
-                        <li> <a asp-controller="Shared" asp-action="SignOut">Logout</a></li>
+                     <ul class="nav navbar-nav navbar-right">     
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
                     </ul>
-
                 }
 
             </div>
