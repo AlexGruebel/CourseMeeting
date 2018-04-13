@@ -48,6 +48,7 @@ namespace CourseMeetingMVC
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseAuthentication();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
