@@ -11,6 +11,7 @@ namespace CourseMeetingEntitiesLib.sec
         public string RName { get; set; }
         public string RDescription { get; set; }
 
-        public User User {get;set;}
+        //public User User {get;set;}
+        //public IdentityUserRole IdentityUserRole {get;set;}
     }
 }
