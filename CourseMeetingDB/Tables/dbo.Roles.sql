@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [sec].[Roles](
-	[RID] [int] NOT NULL,
+	[RID] [varchar](100) NOT NULL,
 	[RName] [nvarchar](20) NOT NULL,
+	[NormalizedName] [nvarchar](20) NOT NULL,
+	[ConcurrencyStamp] text null,
 	[RDescription] [nvarchar](100) NULL
 ) ON [PRIMARY]
 
