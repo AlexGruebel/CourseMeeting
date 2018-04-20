@@ -15,6 +15,6 @@
     [SecurityStamp] [varchar](500) NULL,
     [TwoFactorEnabled] bit NULL,
     [UserName] [nvarchar](50) NOT NULL,
-    [RID] [int] NULL,
+    [RID] [nvarchar](100) NULL,
     [CreationDate] [datetime2](7) NULL
 )
