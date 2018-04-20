@@ -10,7 +10,7 @@ namespace CourseMeetingEntitiesLib.dbo
         public string CName { get; set; }
         public string CDescription { get; set; }
         //primary Teacher UID
-        public int PTUID { get; set; }
+        public string PTUID { get; set; }
         //public User PTeacher { get; set; }
         //secundary Teachers
         public IList<CourseSecundaryTeacher> STeachers {get;set;}
