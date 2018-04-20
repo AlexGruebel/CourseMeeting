@@ -21,6 +21,16 @@
             <br />
             <span asp-validation-for="Email"></span>
         </div>
+
+        <div class="form-group">
+            <label asp-for="Role"></label>
+            <br/>
+            <select asp-for="Role">
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+            </select>
+        </div>
+
         <div class="form-group">
             <label asp-for="Password"></label>
             <br />
