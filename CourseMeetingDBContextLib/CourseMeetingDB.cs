@@ -11,9 +11,9 @@ namespace CourseMeetingDbContextLib
         public DbSet<CourseMeeting> CourseMeetings { get; set; }
         public DbSet<CourseMeetingParticipant> CoursesMeetingParticipants { get; set; }
         public DbSet<CourseSecundaryTeacher> CourseSecundaryTeachers { get; set; }
+        public DbSet<MeetingWithCountParticpants> MeetingWithCountParticpants {get;set;}
 
-
-        public CourseMeetingDb(DbContextOptions options) : base(options)
+        public CourseMeetingDb(DbContextOptions<CourseMeetingDb> options) : base(options)
         {
            
         }
@@ -64,9 +64,12 @@ namespace CourseMeetingDbContextLib
                 t.HasKey(k => new {k.CID, k.STUID});
             });
           
+            modelBuilder.Entity<MeetingWithCountParticpants>(m =>
+            {
+                m.HasKey(k => new {k.CID, k.MID});
+                m.Property(p => p.CountParticpants).HasColumnName("Participants");
+                m.ToTable("CourseMeetingsWithCountParticipants_View");
+            });
         }
-
     }
 }
-
-
