@@ -7,6 +7,7 @@ using CourseMeetingMVC.Models.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using CourseMeetingEntitiesLib.sec;
+using CourseMeetingDbContextLib;
 
 namespace CourseMeetingMVC.Controllers
 {
@@ -14,16 +15,19 @@ namespace CourseMeetingMVC.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly CourseMeetingSecDB _db;
+        
 
         private void CollectErrorsI(IdentityResult result){
             foreach(var error in result.Errors)
             {ModelState.AddModelError("Error: ",error.Description);}
         }
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, CourseMeetingSecDB db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _db = db;
         }
 
 
@@ -44,10 +48,10 @@ namespace CourseMeetingMVC.Controllers
                 {
                     UserName = model.UserName,
                     Email = model.Email,
-                    RID = 1,
                 };
                 
                 var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, model.Role);
                 if(result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent:false);
@@ -67,6 +71,7 @@ namespace CourseMeetingMVC.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             
@@ -76,11 +81,11 @@ namespace CourseMeetingMVC.Controllers
             };
 
             Console.WriteLine($"IsAuthenticated {User.Identity.IsAuthenticated}");
-            Console.WriteLine(User.Identity.Name);
+            
             var result = await _signInManager.
                 PasswordSignInAsync(model.UserName, model.Password,true,true);
             Console.WriteLine($"IsAuthenticated {User.Identity.IsAuthenticated}");
-
+            Console.WriteLine(User.Identity.Name);
             
             if (result.Succeeded){
                 Console.WriteLine("success");
@@ -91,5 +96,50 @@ namespace CourseMeetingMVC.Controllers
                 return View(model);
             }   
         }
+
+        public async Task<IActionResult> SignOut()
+        {
+            
+            await _signInManager.SignOutAsync();
+            return Redirect("/Home/Index");
+        }
+
+
+        /*
+        var queryJoin = categories.Join(products,
+category => category.CategoryID,
+product => product.CategoryID,
+(c, p) => new { c.CategoryName, p.ProductName,
+p.ProductID });
+        
+        
+         */
+
+
+
+        public async Task<IActionResult> Profil(){
+            var user = await _userManager.GetUserAsync(User);
+            _db.IdentityUserRole.Join(_db.Roles
+                                        ,i => i.RoleId
+                                        ,r => r.Id 
+                                        ,(id, ro) => new {ro.Name, id.UserId})
+                                .Where(i => i.UserId == user.Id);
+                                
+            var model = new ProfilViewModel{
+                UserName = user.UserName,
+                EMail = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                
+                Role = _db.IdentityUserRole.Join(_db.Roles
+                                        ,i => i.RoleId
+                                        ,r => r.Id 
+                                        ,(id, ro) => new {ro.Name, id.UserId})
+                                .Where(i => i.UserId == user.Id).Select(r => r.Name).FirstOrDefault().ToString(),               
+            };
+            
+            
+            return View(model);
+        }
+
     }
 }
