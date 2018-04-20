@@ -14,5 +14,6 @@ namespace CourseMeetingMVC.Models.Account
         public string Password { get; set; }
         [Compare("Password", ErrorMessage ="The two Passwords have to be equal!")]
         public string PasswordConfirmation { get; set; }
+        public string Role {get;set;}
     }
 }
