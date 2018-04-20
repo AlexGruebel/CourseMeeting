@@ -26,13 +26,14 @@ namespace CourseMeetingMVC
         public void ConfigureServices(IServiceCollection services)
         {
 
-            //services.AddDbContext<CourseMeetingDb>(option => option.UseSqlServer(System.IO.File.ReadAllText(".connectionString")));
+            services.AddDbContext<CourseMeetingDb>(option => option.UseSqlServer(System.IO.File.ReadAllText(".connectionString")));
 
             services.AddDbContext<CourseMeetingSecDB>(option => option.UseSqlServer(System.IO.File.ReadAllText(".connectionString")));
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<CourseMeetingSecDB>()
+                .AddRoles<IdentityUserRole>()
                 .AddDefaultTokenProviders();
-
+            
             services.AddMvc();
         }
 
