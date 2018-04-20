@@ -16,7 +16,7 @@ namespace CourseMeetingDbContextLib
         public DbSet<IdentityUserRole<string>> IdentityUserRole {get;set;}
         public DbSet<IdentityRoleClaim<string>> IdentityRoleClaim {get;set;}
 
-        public CourseMeetingSecDB(DbContextOptions options) : base(options)
+        public CourseMeetingSecDB(DbContextOptions<CourseMeetingSecDB> options) : base(options)
         {
 
         }
