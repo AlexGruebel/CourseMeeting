@@ -1,0 +1,31 @@
+@model CourseMeetingMVC.Models.Course.CourseViewModel
+
+<h2 class="display-2">@Model.Course.CName</h2>
+
+<h3 class="display-3">Description</h3>
+
+<p>@Model.Course.CDescription</p>
+
+<h3 class="display-3">Meetings</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>MID</th>
+            <th>Date</th>
+            <th>Free seats</th>
+            <th>Max Marticipants</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var meeting in Model.MWithCParticpants)
+        {
+        <tr>
+            <th>@meeting.MID</th>
+            <th>@meeting.DateOfTheMeeting.ToString("dd.MM.yyyy")</th>
+            <th>@meeting.FreeSeats</th>
+            <th>@meeting.MaxParticipants</th>
+        </tr>
+        }
+    </tbody>
+</table>
