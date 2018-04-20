@@ -1,0 +1,25 @@
+@model CourseMeetingMVC.Models.Course.CoursesViewModel
+
+<h2 class="display-2">Courses</h2>
+
+<div class=".center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Course in @Model.Courses)
+            {
+                <tr class="clickToHref" href="Course/@Course.CID">
+                    <th>@Course.CID</th>
+                    <th>@Course.CName</th>
+                    <th>@Course.CDescription</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
