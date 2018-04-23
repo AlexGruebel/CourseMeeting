@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using CourseMeetingEntitiesLib.sec;
 using CourseMeetingDbContextLib;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace CourseMeetingMVC
 {
@@ -31,10 +33,15 @@ namespace CourseMeetingMVC
             services.AddDbContext<CourseMeetingSecDB>(option => option.UseSqlServer(System.IO.File.ReadAllText(".connectionString")));
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<CourseMeetingSecDB>()
-                .AddRoles<IdentityUserRole>()
                 .AddDefaultTokenProviders();
             
-            services.AddMvc();
+            services.AddMvc(config =>{
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

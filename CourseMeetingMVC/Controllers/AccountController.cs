@@ -32,6 +32,7 @@ namespace CourseMeetingMVC.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -39,7 +40,6 @@ namespace CourseMeetingMVC.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult>Register(RegisterViewModel model)
         {
             if(ModelState.IsValid)
@@ -64,6 +64,7 @@ namespace CourseMeetingMVC.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -71,7 +72,6 @@ namespace CourseMeetingMVC.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             
