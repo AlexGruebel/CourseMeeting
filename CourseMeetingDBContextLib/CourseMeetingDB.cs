@@ -9,7 +9,7 @@ namespace CourseMeetingDbContextLib
 
         public DbSet<Course> Courses {get;set;}
         public DbSet<CourseMeeting> CourseMeetings { get; set; }
-        public DbSet<CourseMeetingParticipant> CoursesMeetingParticipants { get; set; }
+        public DbSet<CourseMeetingParticipant> CourseMeetingParticipants { get; set; }
         public DbSet<CourseSecundaryTeacher> CourseSecundaryTeachers { get; set; }
         public DbSet<MeetingWithCountParticpants> MeetingWithCountParticpants {get;set;}
 
@@ -45,17 +45,17 @@ namespace CourseMeetingDbContextLib
             modelBuilder.Entity<CourseMeeting>(cm =>
             {
                 cm.HasKey(k => k.MID);
+
+                cm.Property(p => p.MID)
+                    .UseSqlServerIdentityColumn();
+
+                cm.HasMany(m => m.CourseMeetingParticipants).WithOne(m => m.CourseMeeting);
+                
             });
 
 
             modelBuilder.Entity<CourseMeetingParticipant>(c =>
-            {
-                c.HasOne(m => m.CourseMeeting)
-                .WithMany(m => m.CourseMeetingParticipants);
-
-                //c.HasOne(m => m.Student)
-                //.WithMany(s => s.);//Courses
-
+            {    
                 c.HasKey(k => new {k.MID, k.SUID});
             });
 
