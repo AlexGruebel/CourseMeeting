@@ -1,0 +1,26 @@
+@model CourseMeetingMVC.Models.Course.MyMeetingsViewModel
+
+<h2 class="display-2">My Courses</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>MID</th>
+            <th>Course</th>
+            <th>Teacher</th>
+            <th>Meeting Date</th>
+            <th>discontinue</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.CourseMeetings){
+            <tr id="@item.MID">
+                <th>@item.MID</th>
+                <th>@item.Course.CName</th>
+                <th>NOT Implemented</th>
+                <th>@item.DateOfTheMeeting.ToString("dd.MM.yyyy")</th>
+                <th><button MID="@item.MID" class="UnsubsribeAndRemoveRowByMID">unsubscribe</button></th>
+            </tr>
+        }
+    </tbody>
+</table>
