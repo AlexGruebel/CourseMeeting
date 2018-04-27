@@ -47,7 +47,7 @@ namespace CourseMeetingDbContextLib
                 cm.HasKey(k => k.MID);
 
                 cm.Property(p => p.MID)
-                    .UseSqlServerIdentityColumn();
+                   .UseSqlServerIdentityColumn();
 
                 cm.HasMany(m => m.CourseMeetingParticipants).WithOne(m => m.CourseMeeting);
                 
@@ -57,6 +57,7 @@ namespace CourseMeetingDbContextLib
             modelBuilder.Entity<CourseMeetingParticipant>(c =>
             {    
                 c.HasKey(k => new {k.MID, k.SUID});
+                
             });
 
             modelBuilder.Entity<CourseSecundaryTeacher>(t =>
