@@ -15,19 +15,18 @@
             <th>Date</th>
             <th>Free seats</th>
             <th>Max Marticipants</th>
+            <th>SignIn</th>
         </tr>
     </thead>
     <tbody>
         @foreach(var meeting in Model.MWithCParticpants)
         {
         <tr>
-            <form method="POST" asp-controller="Course" asp-action="SignInToCourseMeeting">
-                <th asp-for="id">@meeting.MID</th>
-                <th>@meeting.DateOfTheMeeting.ToString("dd.MM.yyyy")</th>
-                <th>@meeting.FreeSeats</th>
-                <th>@meeting.MaxParticipants</th>
-                <th><input type="submit" value="SignIn"/></th>
-            </form>
+            <th asp-for="id">@meeting.MID</th>
+            <th>@meeting.DateOfTheMeeting.ToString("dd.MM.yyyy")</th>
+            <th>@meeting.FreeSeats</th>
+            <th>@meeting.MaxParticipants</th>
+            <th><a asp-controller="Course" asp-action="SignInToCourseMeeting" asp-route-id="@meeting.MID">SignIn</a></th>
         </tr>
         }
     </tbody>
