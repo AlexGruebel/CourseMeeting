@@ -1,5 +1,7 @@
 ﻿// Write your JavaScript code.
 
-$(".clickToHref").click(function(){
-    $(location).attr("href", $(this).attr("href"));
-});x
+$(document).ready(function(){
+    $(".clickToHref").click(function(){
+        $(location).attr("href", $(this).attr("href"));
+    });
+});
