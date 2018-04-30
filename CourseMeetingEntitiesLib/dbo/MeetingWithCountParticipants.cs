@@ -7,6 +7,10 @@ namespace CourseMeetingEntitiesLib.dbo
         public int MID {get;set;}
         public int CID {get;set;}
 
+        public string TUID {get;set;}
+
+        public string TName {get;set;}
+
         public DateTime DateOfTheMeeting{get;set;}
 
         public int MaxParticipants {get;set;}
