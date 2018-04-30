@@ -1,10 +1,10 @@
 namespace CourseMeetingEntitiesLib.dbo
 {
-    interface DUser{
-        string UID {get;set;}
-        string UserName {get;set;}
-        string RoleID {get;set;}
-        string Email{get;set;}
-        string PhoneNumber { get; set; }
+    public abstract class DUser{
+        public string UID {get;set;}
+        public string UserName {get;set;}
+        public string RoleID {get;set;}
+        public string Email{get;set;}
+        public string PhoneNumber { get; set; }
     }
 }
