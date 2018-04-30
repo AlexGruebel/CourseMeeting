@@ -10,6 +10,11 @@ namespace CourseMeetingEntitiesLib.dbo
         public Course Course { get; set; }
         public DateTime DateOfTheMeeting { get; set; }  
         public int MaxParticipants { get; set; }
+
+        public string TUID {get;set;}
+
+        public Teacher Teacher {get;set;}
+
         public IList<CourseMeetingParticipant> CourseMeetingParticipants { get; set; }
     }
 }
