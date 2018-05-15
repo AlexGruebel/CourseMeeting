@@ -12,6 +12,7 @@ namespace CourseMeetingDbContextLib
         public DbSet<CourseMeetingParticipant> CourseMeetingParticipants { get; set; }
         public DbSet<CourseSecundaryTeacher> CourseSecundaryTeachers { get; set; }
         public DbSet<MeetingWithCountParticpants> MeetingWithCountParticpants {get;set;}
+        public DbSet<Teacher> Teachers { get; set; }
 
         public CourseMeetingDb(DbContextOptions<CourseMeetingDb> options) : base(options)
         {
@@ -49,8 +50,9 @@ namespace CourseMeetingDbContextLib
                 cm.Property(p => p.MID)
                    .UseSqlServerIdentityColumn();
 
-                cm.HasMany(m => m.CourseMeetingParticipants).WithOne(m => m.CourseMeeting);
-                
+                cm.HasMany(m => m.CourseMeetingParticipants).WithOne(m => m.CourseMeeting);    
+
+                cm.HasOne(m => m.Teacher).WithMany(m => m.CourseMeetings).HasForeignKey(m => m.TUID);
             });
 
 
@@ -71,6 +73,15 @@ namespace CourseMeetingDbContextLib
                 m.Property(p => p.CountParticpants).HasColumnName("Participants");
                 m.ToTable("CourseMeetingsWithCountParticipants_View");
             });
+
+            modelBuilder.Entity<Teacher>(u => 
+            {
+                u.HasKey(k => k.UID);
+                u.HasQueryFilter(f => f.RoleID == "B");
+                u.ToTable("Users_View");
+            });
+
+
         }
     }
 }
