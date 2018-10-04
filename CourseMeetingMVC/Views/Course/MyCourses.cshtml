@@ -1,0 +1,39 @@
+@model CourseMeetingMVC.Models.Course.MyCoursesViewModel
+
+<h2 class="display-2">My Courses</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course ID</th>
+            <th>Name</th>
+        </tr>
+        <!--Design?? -->
+    </thead>
+    
+    <tbody>
+        @foreach(var item in Model.Courses)
+        {
+        <tr>
+            <th CID="@item.CID"> <input type="button" value="+" class="ShowCID" CID="@item.CID">@item.CID</th>
+            <th>@item.CName</th>
+        </tr>
+
+        <tr id="@item.CID" class="Collapse">
+            <th colspan="2">
+                <!-- Configuration -->
+                <label>Name</label>
+                <input class="input" value="@item.CName"/>
+
+                <label>Description</label>
+                <input value="@item.CDescription">
+
+                <!-- List Secundary Techers -->
+                <input type="submit" value="SaveChanges" asp-controller="Course" asp-action="CreateCourse">
+            </th>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<input type="submit" value="Create new Course" />
