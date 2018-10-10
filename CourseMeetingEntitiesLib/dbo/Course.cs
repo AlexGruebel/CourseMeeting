@@ -9,7 +9,7 @@ namespace CourseMeetingEntitiesLib.dbo
         public int CID { get; set; }
         public string CName { get; set; }
         public string CDescription { get; set; }
-        //primary Teacher UID
+        //primary Teacher UID --> Creator
         public string PTUID { get; set; }
         //public User PTeacher { get; set; }
         //secundary Teachers
