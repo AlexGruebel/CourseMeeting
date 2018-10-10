@@ -16,24 +16,28 @@
         {
         <tr>
             <th CID="@item.CID"> <input type="button" value="+" class="ShowCID" CID="@item.CID">@item.CID</th>
-            <th>@item.CName</th>
+            <!--this is definitly not a good solution for addressing that element, i will implement a better solution in the future-->
+            <th id="@(item.CID)AName">@item.CName</th>
         </tr>
 
         <tr id="@item.CID" class="Collapse">
             <th colspan="2">
                 <!-- Configuration -->
                 <label>Name</label>
-                <input class="input" value="@item.CName"/>
-
+                <input value="@item.CName" class="form-control" id="@(item.CID)Name"/>
+                <br/>
                 <label>Description</label>
-                <input value="@item.CDescription">
+                <input value="@item.CDescription" class="form-control" id="@(item.CID)Description">
 
                 <!-- List Secundary Techers -->
-                <input type="submit" value="SaveChanges" asp-controller="Course" asp-action="CreateCourse">
+                <br/>
+                <input type="submit" value="SaveChanges" cid="@item.CID" class="UpdateCourse btn btn-default"> 
             </th>
         </tr>
         }
     </tbody>
 </table>
 
-<input type="submit" value="Create new Course" />
+<form action="/Course/CreateCourse">
+    <input type="submit" value="Create new Course"  class="btn btn-default"/>
+</form>

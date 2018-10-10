@@ -111,11 +111,28 @@ namespace CourseMeetingMVC.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles="Teacher")]
+        public IActionResult CreateCourse()
+        {
+            
+            return View();
+        }
+
         [HttpPost]
         [Authorize(Roles="Teacher")]
-        public async Task<IActionResult> CreateCourse(string json)
-        {
-            System.Console.WriteLine(json);
+        public async Task<Task<IActionResult>> CreateCourse(Course course){
+            course.PTUID = await this._UserManger.GetUserIdAsync(await this._UserManger.GetUserAsync(User));            
+            await this._db.AddAsync(course);
+            await this._db.SaveChangesAsync();
+            return MyCourses();
+        }
+
+        [HttpPut]
+        [Authorize(Roles="Teacher")]
+        public async Task<IActionResult> UpdateCourse(Course course){
+            course.PTUID = await this._UserManger.GetUserIdAsync(await this._UserManger.GetUserAsync(User));            
+            this._db.Courses.Update(course);
             await this._db.SaveChangesAsync();
             return Ok();
         }

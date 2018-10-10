@@ -31,4 +31,27 @@ $(document).ready(function(){
     function createCourse(){
         $.post("/Course/CreateCourse/", {test: "HEY"});
     }
+
+    $(".UpdateCourse").unbind("click").click(function(){
+        console.log("UpdateCourse...");
+        let CID = $(this).attr("cid");
+        let cCID = "#" + CID
+        let cName = $(cCID + "Name").val().trim();
+
+        $.ajax({
+            dataType: "text",
+            url: "/Course/UpdateCourse",
+            type: "PUT",
+            data: {
+                CID: CID,
+                CName: cName,
+                CDescription: $(cCID + "Description").val().trim()
+                },
+            
+            success: function(){
+                $("#" + CID + "AName").text(cName);
+            },
+        });
+    });
+
 });
