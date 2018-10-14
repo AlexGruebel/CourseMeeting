@@ -10,3 +10,10 @@ Properties
 CourseMeeting.code-workspace
 *.connectionString
 .\CourseMeetingMVC\bin
+.\CourseMeetingMVC\obj
+.\CourseMeetingEntitiesLib\bin
+.\CourseMeetingEntitiesLib\obj
+.\CourseMeetingDBContextLib\bin
+.\CourseMeetingDBContextLib\obj
+.\CourseMeetingDB\bin
+.\CourseMeetingDB\obj
