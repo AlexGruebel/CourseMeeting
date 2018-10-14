@@ -9,3 +9,4 @@ Properties
 *.refactorlog
 CourseMeeting.code-workspace
 *.connectionString
+.\CourseMeetingMVC\bin
